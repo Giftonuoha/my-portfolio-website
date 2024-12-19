@@ -10,11 +10,29 @@ export default {
     extend: {
       colors: {
         black: {
-          DEFFAULT: '#000',
-          100: '#000319'
-        }
+          DEFAULT: "#000",
+          100: "#000319",
+        },
+        mutedYellow: "#D1D1AD",
+        mutedBlue: "#5B738B",
+      },
+      animation: {
+        spotlight: "spotlight 2s ease .75s 1 forwards",
+      },
+      keyframes: {
+        spotlight: {
+          "0%": {
+            opacity: "0",
+            transform: "translate(-72%, -62%) scale(0.5)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translate(-50%, -40%) scale(1)",
+          },
+        },
       },
     },
   },
   plugins: [],
 } satisfies Config;
+ 

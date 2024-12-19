@@ -22,7 +22,7 @@ const NavigationBar = () => {
     }
    
   return (
-    <nav className="flex fixed shadow w-full md:static justify-between md:px-28 px-2 py-4 border-b items-center top-0 bg-black-100 z-10">
+    <nav className="flex fixed shadow shadow-[#D1D1AD] w-full md:static justify-between lg:px-28 md:px-20 px-2 py-4 border-b items-center top-0 bg-black-100 z-10">
         {/* Logo Area */}
         <div className="flex w-full justify-between items-center">
             <div className="relative rounded-full justify-center flex items-center mx-4">
@@ -33,13 +33,13 @@ const NavigationBar = () => {
                     height={80}
                     className="rounded-full md:w-[80px] md:h-[80px] w-11 h-11"
                 />
-                <span className="text-[#253448] text-3xl mx-2">Gift.</span>
+                <span className="text-[#5B738B] text-3xl mx-2">Gift.</span>
             </div>
             {/* Mobile hanbarger menu */}
             <div onClick={handleMenu} 
             className="block md:hidden"
             >
-                <FaBars size={30}/>
+                <FaBars size={30} className="text-[#D1D1AD]"/>
             </div>
         </div>
 
@@ -51,9 +51,9 @@ const NavigationBar = () => {
                         <Link
                         key={link.href}
                         className={classNames({
-                            'text-zinc-900' :link.href === currentPath,
-                            'text-zinc-500' :link.href !== currentPath,
-                            'hover:text-zinc-800 transition-colors' : true,
+                            'text-[#dddd6e]' :link.href === currentPath,
+                            'text-[#D1D1AD]' :link.href !== currentPath,
+                            'hover:text-[#accae9] transition-colors text-xl' : true,
                         })}
                             href={link.href}>
                                 {link.label}
@@ -62,6 +62,42 @@ const NavigationBar = () => {
                 )
             }
         </ul>
+        {/* Mobile Screens Navigation */}
+        <div className={
+            isMenuOpen
+            ? "fixed h-screen top-0 left-0 w-[65%] bg-[#5B738B] block md:hidden p-4 ease-in duration-500"
+            : "fixed left-[-100%] top-0 p-10 ease-in duration-500"
+        }>
+            <div className="w-full items-center flex justify-end mb-6">
+                <div onClick={handleMenu}>
+                <FaTimes size={30} />
+                </div>
+            </div>
+
+            <div>
+                <ul className="flex-col">
+                    {
+                        links.map(link => 
+                            <div key={link.href} className="sm:flex lg:flex py-2">
+                                <Link
+                                key={link.href}
+                                onClick={() => setIsMenuOpen(false)}
+                                className={classNames({
+                                    'text-[#dddd6e]' :link.href === currentPath,
+                                    'text-[#D1D1AD]' :link.href !== currentPath,
+                                    'hover:text-[#accae9] transition-colors text-xl' : true,
+                                })}
+                                    href={link.href}>
+                                        {link.label}
+                                </Link>
+                            </div>
+                        )
+                    }
+
+                </ul>
+           </div>
+        </div>
+      
     </nav>
    
   )
